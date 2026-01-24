@@ -1,11 +1,25 @@
 package com.ignaciomariano.billetera.billetera_virtual_backend.model;
 
+import jakarta.persistence.*;
 
+@Entity(name="user")
+@Table(name="users")
 public class User {
-    private String name;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.UUID)
+    private Long id;
+
+    @Column(name="dniNumber",nullable=false,unique=true,updatable=false)
+    private int dniNumber;
+    @Column(name = "firstName",nullable=false)
+    private String firstName;
+    @Column(name = "lastName",nullable=false)
     private String lastName;
+    @Column(name = "email",nullable=false,unique=true)
     private String email;
+    @Column(name = "password",nullable=false)
     private String password;
-
-
+    @Column(name = "status",nullable=false)
+    private String status;
 }

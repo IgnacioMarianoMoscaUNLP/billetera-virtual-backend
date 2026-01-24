@@ -5,5 +5,4 @@ public class Account {
     private String cvu;
     private float balance;
     private String currency;
-
 }
