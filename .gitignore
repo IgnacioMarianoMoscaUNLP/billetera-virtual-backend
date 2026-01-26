@@ -4,3 +4,4 @@ application-dev.properties
 application.properties
 .env
 *.env
+application.properties
