@@ -1,4 +1,4 @@
-package com.ignaciomariano.billetera.billetera_virtual_backend.model;
+package com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

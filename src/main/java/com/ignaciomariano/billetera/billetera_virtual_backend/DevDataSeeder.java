@@ -1,11 +1,11 @@
 package com.ignaciomariano.billetera.billetera_virtual_backend;
 
-import com.ignaciomariano.billetera.billetera_virtual_backend.model.Account;
-import com.ignaciomariano.billetera.billetera_virtual_backend.model.Transaction;
-import com.ignaciomariano.billetera.billetera_virtual_backend.model.User;
-import com.ignaciomariano.billetera.billetera_virtual_backend.repository.AccountRepository;
-import com.ignaciomariano.billetera.billetera_virtual_backend.repository.TransactionRepository;
-import com.ignaciomariano.billetera.billetera_virtual_backend.repository.UserRepository;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity.Account;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity.Transaction;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity.User;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.AccountRepository;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.TransactionRepository;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

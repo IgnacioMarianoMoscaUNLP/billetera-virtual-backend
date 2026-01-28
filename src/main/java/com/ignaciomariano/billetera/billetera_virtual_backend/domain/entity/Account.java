@@ -1,6 +1,7 @@
-package com.ignaciomariano.billetera.billetera_virtual_backend.model;
+package com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity;
 
 
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.valueObject.Money;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +16,7 @@ public class Account {
     @Column(unique = true)
     private String cvu;
     @Column(nullable=false)
-    private float balance;
-    @Column(nullable=false)
-    private String currency;
+    private Money balance;
 
     //Relationship with user
     @ManyToOne(fetch=FetchType.LAZY)
