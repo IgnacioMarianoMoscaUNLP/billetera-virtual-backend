@@ -6,11 +6,13 @@ import com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity.User
 import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.AccountRepository;
 import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.TransactionRepository;
 import com.ignaciomariano.billetera.billetera_virtual_backend.domain.repository.UserRepository;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.valueObject.Money;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -67,20 +69,17 @@ public class DevDataSeeder implements CommandLineRunner {
 
         Account a1 = new Account();
         a1.setCvu("0000003100000000000001");
-        a1.setBalance(150000.00f);
-        a1.setCurrency("ARS");
+        a1.setBalance(Money.of(new BigDecimal("150000.00"),"ARS"));
         a1.setAccountHolder(u1);
 
         Account a2 = new Account();
         a2.setCvu("0000003100000000000002");
-        a2.setBalance(85000.50f);
-        a2.setCurrency("ARS");
+        a2.setBalance(Money.of(new BigDecimal("85000.50"),"ARS"));
         a2.setAccountHolder(u2);
 
         Account a3 = new Account();
         a3.setCvu("0000003100000000000003");
-        a3.setBalance(12500.00f);
-        a3.setCurrency("ARS");
+        a3.setBalance(Money.of(new BigDecimal("12500.00"),"ARS"));
         a3.setAccountHolder(u3);
 
         accountRepository.saveAll(List.of(a1, a2, a3));

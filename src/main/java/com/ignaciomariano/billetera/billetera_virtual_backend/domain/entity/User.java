@@ -1,29 +1,50 @@
 package com.ignaciomariano.billetera.billetera_virtual_backend.domain.entity;
 
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.valueObject.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.ignaciomariano.billetera.billetera_virtual_backend.domain.valueObject.Email;
 
-@Entity(name="user")
-@Table(name="users")
-@Getter
-@Setter
+import javax.crypto.EncryptedPrivateKeyInfo;
+import java.time.LocalDate;
+
+
 public class User {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(nullable=false,unique=true,updatable=false)
+    private final UserId id;
     private int dniNumber;
-    @Column(nullable=false)
+    private Phone phone;
     private String firstName;
-    @Column(nullable=false)
     private String lastName;
-    @Column(nullable=false,unique=true)
-    private String email;
-    @Column(nullable=false)
-    private String password;
-    @Column(nullable=false)
+    private Email email;
+    private EncryptedPassword password;
     private String status;
+    private LocalDate dateOfBirth;
+
+
+    private User(UserId id, int dniNumber, String firstName, String lastName, Email email, EncryptedPassword password, String status,Phone phone,LocalDate dateOfBirth) {
+        this.id = id;
+        this.dniNumber = dniNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+    }
+    public static User create(int dniNumber, String firstName, String lastName, String email, String password,String countryCode,String number,LocalDate dateOfBirth){
+        if(!isAdult(dateOfBirth))
+            throw new IllegalArgumentException("User must be at least 18 years old");
+
+        return new User(UserId.generate(), dniNumber, firstName, lastName, Email.of(email), EncryptedPassword.of(password), "ACTIVE",Phone.of(countryCode,number),dateOfBirth);
+    }
+
+    private static boolean isAdult(LocalDate dateOfBirth){
+        LocalDate today = LocalDate.now();
+        return today.isAfter(dateOfBirth.plusYears(18));
+    }
+
 }
